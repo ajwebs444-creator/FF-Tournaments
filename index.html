@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AJ's Free Fire Tournaments | Daily Cash Prizes</title>
+  <!-- Google Fonts for modern typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #ff5722;
+      --secondary: #2196f3;
+      --accent: #ffeb3b;
+      --dark: #1a1a2e;
+      --light: #f8f9fa;
+      --success: #4caf50;
+      --warning: #ff9800;
+      --danger: #f44336;
+      --font-family: 'Poppins', sans-serif;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: var(--font-family);
+    }
+    
+    body {
+      background-color: var(--dark);
+      color: var(--light);
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(255,87,34,0.1) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(33,150,243,0.1) 0%, transparent 20%);
+    }
+    
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+    
+    .particle {
+      position: absolute;
+      background-color: rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      animation: float linear infinite;
+    }
+    
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+    
+    header {
+      background: linear-gradient(135deg, rgba(26,26,46,0.9) 0%, rgba(33,150,243,0.3) 100%);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.5s ease;
+    }
+    
+    header:hover {
+      background: linear-gradient(135deg, rgba(26,26,46,1) 0%, rgba(33,150,243,0.5) 100%);
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .logo img {
+      height: 60px;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+      100% { transform: scale(1); }
+    }
+    
+    .logo h1 {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+    
+    .chat-toggle {
+      background: var(--secondary);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 55px;
+      height: 55px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1500;
+      box-shadow: 0 8px 20px rgba(33,150,243,0.6);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .chat-toggle:hover {
+      transform: scale(1.1);
+      box-shadow: 0 10px 25px rgba(33,150,243,0.8);
+    }
+    
+    .hero {
+      position: relative;
+      text-align: center;
+      margin-bottom: 3rem;
+      height: 80vh;
+      overflow: hidden;
+    }
+    
+    /* Enhanced hero video style for improved visuals */
+    .hero video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+      filter: brightness(0.6);
+      transition: transform 0.8s ease;
+    }
+    
+    .hero video:hover {
+      transform: scale(1.05);
+    }
+    
+    .hero .hero-content {
+      position: relative;
+      z-index: 2;
+      padding-top: 10%;
+      text-shadow: 0 0 15px rgba(0,0,0,0.5);
+    }
+    
+    .hero h2 {
+      font-size: 3.2rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: glowText 2s infinite alternate;
+    }
+    
+    @keyframes glowText {
+      from { text-shadow: 0 0 10px var(--primary); }
+      to { text-shadow: 0 0 30px var(--secondary); }
+    }
+    
+    .hero p {
+      font-size: 1.3rem;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      color: rgba(255,255,255,0.9);
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255,87,34,0.4);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(255,87,34,0.6);
+    }
+    
+    .btn:active {
+      transform: translateY(1px);
+    }
+    
+    .btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, var(--secondary), var(--primary));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+    }
+    
+    .btn:hover::after {
+      opacity: 1;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    .tournaments {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    
+    .tournament-card {
+      background: linear-gradient(135deg, rgba(26,26,46,0.85) 0%, rgba(33,150,243,0.25) 100%);
+      border-radius: 15px;
+      padding: 1.5rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      animation: cardEntrance 0.5s ease-out;
+      animation-fill-mode: backwards;
+    }
+    
+    @keyframes cardEntrance {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .tournament-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      border-color: rgba(255,87,34,0.5);
+    }
+    
+    .tournament-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+    }
+    
+    .tournament-card h3 {
+      font-size: 1.7rem;
+      margin-bottom: 1rem;
+      color: white;
+    }
+    
+    .price {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px dashed rgba(255,255,255,0.2);
+    }
+    
+    .entry-price {
+      background-color: rgba(255,152,0,0.2);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-weight: 600;
+      color: var(--warning);
+    }
+    
+    .winning-prize {
+      background-color: rgba(76,175,80,0.2);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-weight: 600;
+      color: var(--success);
+    }
+    
+    .prizes {
+      margin-bottom: 1.5rem;
+    }
+    
+    .prize-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+    
+    .prize-item .position {
+      color: rgba(255,255,255,0.7);
+    }
+    
+    .prize-item .amount {
+      font-weight: 600;
+      color: white;
+    }
+    
+    .register-btn {
+      width: 100%;
+      text-align: center;
+    }
+    
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.85);
+      backdrop-filter: blur(5px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    
+    .modal.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    
+    .modal-content {
+      background: linear-gradient(135deg, rgba(26,26,46,0.95) 0%, rgba(33,150,243,0.25) 100%);
+      border-radius: 15px;
+      padding: 2rem;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.1);
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
+      position: relative;
+    }
+    
+    .modal.active .modal-content {
+      transform: scale(1);
+    }
+    
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.5);
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+    
+    .close-modal:hover {
+      color: var(--danger);
+    }
+    
+    .modal h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      color: white;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: rgba(255,255,255,0.8);
+    }
+    
+    .form-group input {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      background-color: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 8px;
+      color: white;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+    
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--secondary);
+      background-color: rgba(33,150,243,0.1);
+    }
+    
+    .submit-btn {
+      width: 100%;
+      padding: 0.8rem;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255,87,34,0.4);
+    }
+    
+    .confirmation {
+      text-align: center;
+      display: none;
+    }
+    
+    .confirmation.active {
+      display: block;
+      animation: fadeIn 0.5s ease-out;
+    }
+    
+    .confirmation i {
+      font-size: 4rem;
+      color: var(--success);
+      margin-bottom: 1rem;
+      animation: bounce 1s infinite alternate;
+    }
+    
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-10px); }
+    }
+    
+    .confirmation h4 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: white;
+    }
+    
+    .confirmation p {
+      margin-bottom: 1rem;
+      color: rgba(255,255,255,0.8);
+    }
+    
+    .verification-code {
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      padding: 1rem;
+      border-radius: 8px;
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: 5px;
+      margin: 1rem 0;
+      color: white;
+      text-align: center;
+      animation: pulse 1.5s infinite;
+    }
+    
+    footer {
+      background: linear-gradient(135deg, rgba(26,26,46,0.9) 0%, rgba(33,150,243,0.3) 100%);
+      backdrop-filter: blur(10px);
+      padding: 2rem;
+      text-align: center;
+      margin-top: 3rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      border-radius: 50%;
+      color: white;
+      font-size: 1.5rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    .social-link:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+    
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    
+    .footer-link {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-link:hover {
+      color: var(--secondary);
+    }
+    
+    .copyright {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.9rem;
+    }
+    
+    @media (max-width: 768px) {
+      .hero h2 {
+        font-size: 2.2rem;
+      }
+      
+      .tournaments {
+        grid-template-columns: 1fr;
+      }
+      
+      .container {
+        padding: 6rem 1rem 1rem;
+      }
+    }
+    
+    /* Glow effects */
+    .glow {
+      animation: glow 2s infinite alternate;
+    }
+    
+    @keyframes glow {
+      from { box-shadow: 0 0 5px rgba(255,87,34,0.5); }
+      to { box-shadow: 0 0 20px rgba(255,87,34,0.8); }
+    }
+    
+    /* Trust badges */
+    .trust-badges {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin: 2rem 0;
+    }
+    
+    .trust-badge {
+      background-color: rgba(76,175,80,0.1);
+      border: 1px solid rgba(76,175,80,0.3);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.8);
+    }
+    
+    .trust-badge i {
+      color: var(--success);
+    }
+    
+    /* AI Chatbot styles */
+    .chat-modal {
+      position: fixed;
+      bottom: 90px;
+      right: 30px;
+      width: 300px;
+      max-height: 400px;
+      background: rgba(26,26,46,0.95);
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      display: none;
+      flex-direction: column;
+      z-index: 1500;
+    }
+    
+    .chat-modal.active {
+      display: flex;
+    }
+    
+    .chat-header {
+      padding: 0.8rem;
+      background: var(--secondary);
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      color: white;
+      font-weight: bold;
+      text-align: center;
+    }
+    
+    .chat-body {
+      flex: 1;
+      padding: 0.8rem;
+      overflow-y: auto;
+      font-size: 0.9rem;
+      color: var(--light);
+    }
+    
+    .chat-input {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      padding: 0.8rem;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      outline: none;
+      font-size: 0.9rem;
+    }
+    
+    .chat-message {
+      margin-bottom: 0.5rem;
+      padding: 0.5rem;
+      border-radius: 5px;
+    }
+    
+    .chat-message.user {
+      background: var(--primary);
+      text-align: right;
+    }
+    
+    .chat-message.ai {
+      background: var(--secondary);
+      text-align: left;
+    }
+    
+    /* Free Tournament Locked Style */
+    .locked-tournament {
+      position: relative;
+      filter: brightness(0.7);
+    }
+    
+    .lock-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 15px;
+      z-index: 2;
+    }
+    
+    .lock-icon {
+      font-size: 3rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      animation: pulse 2s infinite;
+    }
+    
+    .unlock-date {
+      background: var(--primary);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: bold;
+      margin-top: 1rem;
+    }
+    
+    /* YouTube Live Badge */
+    .live-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #ff0000;
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      animation: blink 1s infinite;
+    }
+    
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+  </style>
+</head>
+<body>
+  <div class="particles" id="particles"></div>
+  
+  <header>
+    <div class="logo">
+      <img src="https://cdn-icons-png.flaticon.com/512/732/732225.png" alt="Free Fire Logo">
+      <h1>AJ's FF Tournaments</h1>
+    </div>
+    <!-- YouTube Live Toggle -->
+    <button class="chat-toggle" id="liveToggle">
+      <i class="fas fa-broadcast-tower"></i>
+    </button>
+  </header>
+  
+  <section class="hero">
+    <video autoplay muted loop preload="auto" poster="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80">
+      <source src="https://assets.mixkit.co/videos/preview/mixkit-game-show-lights-1292-large.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="hero-content">
+      <h2>Daily Free Fire Cash Tournaments</h2>
+      <p>Join AJ's premium tournaments with instant cash prizes. All tournaments streamed LIVE on YouTube for 100% transparency!</p>
+      <a href="https://youtube.com/@medikitgaming6911" class="btn glow" target="_blank">
+        <i class="fab fa-youtube"></i> Watch Live on YouTube
+      </a>
+    </div>
+  </section>
+  
+  <div class="container">
+    <!-- Trust Section with YouTube Live Info -->
+    <section class="trust-badges">
+      <div class="trust-badge">
+        <i class="fas fa-video"></i>
+        <span>Live on YouTube</span>
+      </div>
+      <div class="trust-badge">
+        <i class="fas fa-shield-alt"></i>
+        <span>Instant Prizes</span>
+      </div>
+      <div class="trust-badge">
+        <i class="fas fa-trophy"></i>
+        <span>100% Fair Play</span>
+      </div>
+      <div class="trust-badge">
+        <i class="fas fa-rupee-sign"></i>
+        <span>Cash Prizes</span>
+      </div>
+    </section>
+    
+    <h2 style="text-align: center; color: var(--accent); margin: 2rem 0; font-size: 2.5rem;">
+      <i class="fas fa-calendar-alt"></i> Daily Tournament Schedule
+    </h2>
+    
+    <section id="tournaments" class="tournaments">
+      <!-- Tournament 1: 12 PM -->
+      <div class="tournament-card">
+        <div class="live-badge">LIVE on YouTube</div>
+        <h3>Afternoon Quick Fire</h3>
+        <div class="price">
+          <span class="entry-price">Entry: ₹20</span>
+          <span class="winning-prize">Prize Pool: ₹350</span>
+        </div>
+        <div class="prizes">
+          <div class="prize-item">
+            <span class="position">🥇 1st Place:</span>
+            <span class="amount">₹200</span>
+          </div>
+          <div class="prize-item">
+            <span class="position">🥈 2nd Place:</span>
+            <span class="amount">₹100</span>
+          </div>
+          <div class="prize-item">
+            <span class="position">🥉 3rd Place:</span>
+            <span class="amount">₹50</span>
+          </div>
+        </div>
+        <p style="color: var(--warning); text-align: center; margin: 1rem 0; font-weight: bold;">
+          <i class="fas fa-clock"></i> Time: 12:00 PM Daily
+        </p>
+        <button class="btn register-btn" data-tournament="Afternoon Quick Fire (12PM)" data-fee="20">
+          Register for ₹20
+        </button>
+      </div>
+      
+      <!-- Tournament 2: 4 PM -->
+      <div class="tournament-card">
+        <div class="live-badge">LIVE on YouTube</div>
+        <h3>Evening Showdown</h3>
+        <div class="price">
+          <span class="entry-price">Entry: ₹30</span>
+          <span class="winning-prize">Prize Pool: ₹450</span>
+        </div>
+        <div class="prizes">
+          <div class="prize-item">
+            <span class="position">🥇 1st Place:</span>
+            <span class="amount">₹300</span>
+          </div>
+          <div class="prize-item">
+            <span class="position">🥈 2nd Place:</span>
+            <span class="amount">₹100</span>
+          </div>
+          <div class="prize-item">
+            <span class="position">🥉 3rd Place:</span>
+            <span class="amount">₹50</span>
+          </div>
+        </div>
+        <p style="color: var(--warning); text-align: center; margin: 1rem 0; font-weight: bold;">
+          <i class="fas fa-clock"></i> Time: 4:00 PM Daily
+        </p>
+        <button class="btn register-btn" data-tournament="Evening Showdown (4PM)" data-fee="30">
+          Register for ₹30
+        </button>
+      </div>
+      
+      <!-- Tournament 3: 8 PM -->
+      <div class="tournament-card">
+        <div class="live-badge">LIVE on YouTube</div>
+        <h3>Night Elite Battle</h3>
+        <div class="price">
+          <span class="entry-price">Entry: ₹50</span>
+          <span class="winning-prize">Prize Pool: ₹800</span>
+        </div>
+        <div class="prizes">
+          <div class="prize-item">
+            <span class="position">🥇 1st Place:</span>
+            <span class="amount">₹500</span>
+          </div>
+          <div class="prize-item">
+            <span class="position">🥈 2nd Place:</span>
+            <span class="amount">₹150</span>
+          </div>
+          <div class="prize-item">
+            <span class="position">🥉 3rd Place:</span>
+            <span class="amount">₹100</span>
+          </div>
+          <div class="prize-item">
+            <span class="position">🎖️ 4th Place:</span>
+            <span class="amount">₹50</span>
+          </div>
+        </div>
+        <p style="color: var(--warning); text-align: center; margin: 1rem 0; font-weight: bold;">
+          <i class="fas fa-clock"></i> Time: 8:00 PM Daily
+        </p>
+        <button class="btn register-btn" data-tournament="Night Elite Battle (8PM)" data-fee="50">
+          Register for ₹50
+        </button>
+      </div>
+      
+      <!-- Weekly Free Tournament (Locked) -->
+      <div class="tournament-card locked-tournament">
+        <div class="lock-overlay">
+          <div class="lock-icon">
+            <i class="fas fa-lock"></i>
+          </div>
+          <h3 style="color: var(--accent);">Weekly Free Tournament</h3>
+          <p style="text-align: center; color: white; margin: 0.5rem 1rem;">
+            Unlocks every Sunday! Entry completely FREE with real cash prizes!
+          </p>
+          <div class="prizes" style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px; margin: 1rem;">
+            <div class="prize-item">
+              <span class="position">🥇 1st Prize:</span>
+              <span class="amount" style="color: var(--accent);">₹100</span>
+            </div>
+            <div class="prize-item">
+              <span class="position">🥈 2nd Prize:</span>
+              <span class="amount">₹50</span>
+            </div>
+          </div>
+          <div class="unlock-date">
+            <i class="fas fa-calendar-check"></i> Every Sunday
+          </div>
+        </div>
+        <h3>Weekly Free Tournament</h3>
+        <div class="price">
+          <span class="entry-price" style="background: rgba(76,175,80,0.3); color: var(--success);">Entry: FREE</span>
+          <span class="winning-prize">Prize Pool: ₹150</span>
+        </div>
+        <div class="prizes">
+          <div class="prize-item">
+            <span class="position">🥇 1st Place:</span>
+            <span class="amount">₹100</span>
+          </div>
+          <div class="prize-item">
+            <span class="position">🥈 2nd Place:</span>
+            <span class="amount">₹50</span>
+          </div>
+        </div>
+        <p style="color: var(--success); text-align: center; margin: 1rem 0; font-weight: bold;">
+          <i class="fas fa-gift"></i> Every Sunday - Absolutely FREE!
+        </p>
+        <button class="btn register-btn" data-tournament="Weekly Free Tournament" data-fee="0" disabled style="background: #666; cursor: not-allowed;">
+          <i class="fas fa-lock"></i> Unlocks Sunday
+        </button>
+      </div>
+    </section>
+    
+    <!-- YouTube Live Stream Embed -->
+    <section style="margin: 3rem 0; text-align: center;">
+      <h2 style="color: #ff0000; margin-bottom: 1rem;">
+        <i class="fab fa-youtube"></i> Live Tournament Stream
+      </h2>
+      <div style="background: rgba(255,255,255,0.05); padding: 2rem; border-radius: 15px; border: 2px solid #ff0000;">
+        <p style="margin-bottom: 1rem; color: rgba(255,255,255,0.8);">
+          <i class="fas fa-info-circle"></i> All tournaments are streamed LIVE on YouTube for complete transparency.
+          Watch the action, see winners being decided, and verify prize distribution!
+        </p>
+        <a href="https://youtube.com/@medikitgaming6911" class="btn" target="_blank" style="background: #ff0000; border: none;">
+          <i class="fab fa-youtube"></i> Watch Live Now
+        </a>
+      </div>
+    </section>
+  </div>
+  
+  <!-- Registration Modal -->
+  <div class="modal" id="registrationModal">
+    <div class="modal-content">
+      <button class="close-modal" id="closeModal">&times;</button>
+      <div class="registration-form" id="registrationForm">
+        <h3>Tournament Registration</h3>
+        <p id="tournamentName" style="text-align: center; margin-bottom: 1.5rem; color: var(--secondary); font-weight: 600;"></p>
+        <p id="tournamentTime" style="text-align: center; margin-bottom: 1.5rem; color: var(--warning);"></p>
+        
+        <div class="form-group">
+          <label for="playerName"><i class="fas fa-user"></i> Your Name</label>
+          <input type="text" id="playerName" placeholder="Enter your full name" required>
+        </div>
+        <div class="form-group">
+          <label for="playerPhone"><i class="fas fa-phone"></i> WhatsApp Number</label>
+          <input type="tel" id="playerPhone" placeholder="Enter 10-digit WhatsApp number" required>
+        </div>
+        <div class="form-group">
+          <label for="playerUID"><i class="fas fa-gamepad"></i> Free Fire UID</label>
+          <input type="text" id="playerUID" placeholder="Enter your Free Fire UID" required>
+        </div>
+        
+        <div style="background: rgba(255,152,0,0.1); padding: 1rem; border-radius: 10px; margin: 1.5rem 0;">
+          <p style="color: var(--warning); margin-bottom: 0.5rem;">
+            <i class="fas fa-exclamation-triangle"></i> Payment Instructions:
+          </p>
+          <p id="paymentDetails" style="color: white; font-weight: bold; text-align: center;"></p>
+          <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-top: 0.5rem;">
+            Send payment screenshot to WhatsApp after registration
+          </p>
+        </div>
+        
+        <button class="submit-btn" id="submitRegistration">
+          <i class="fas fa-check-circle"></i> Complete Registration
+        </button>
+      </div>
+      
+      <div class="confirmation" id="confirmation">
+        <i class="fas fa-check-circle"></i>
+        <h4>Registration Successful!</h4>
+        <p>Your tournament registration has been confirmed.</p>
+        <p>Next Steps:</p>
+        <div style="background: rgba(33,150,243,0.1); padding: 1rem; border-radius: 10px; margin: 1rem 0;">
+          <p>1. Make payment of ₹<span id="feeAmount"></span> via UPI</p>
+          <p>2. Send screenshot to WhatsApp: <strong>7455025661</strong></p>
+          <p>3. Get room ID 15 mins before tournament</p>
+          <p>4. Watch LIVE on YouTube for results</p>
+        </div>
+        <p style="color: var(--accent); font-weight: bold;">
+          <i class="fab fa-youtube"></i> Tournament will be LIVE on YouTube!
+        </p>
+        <button class="btn" id="confirmOk" style="margin-top: 1rem;">
+          <i class="fas fa-thumbs-up"></i> Got It!
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Live Stream Modal -->
+  <div class="modal" id="liveModal">
+    <div class="modal-content">
+      <button class="close-modal" id="closeLiveModal">&times;</button>
+      <h3><i class="fab fa-youtube" style="color: #ff0000;"></i> Live Tournament Stream</h3>
+      <div style="text-align: center; margin: 1.5rem 0;">
+        <p style="color: rgba(255,255,255,0.8); margin-bottom: 1rem;">
+          All tournaments are streamed LIVE for 100% transparency. Watch winners being decided in real-time!
+        </p>
+        <a href="https://youtube.com/@medikitgaming6911" class="btn" target="_blank" style="background: #ff0000; border: none; margin: 0.5rem;">
+          <i class="fab fa-youtube"></i> Watch on YouTube
+        </a>
+        <p style="color: var(--accent); margin-top: 1rem; font-weight: bold;">
+          <i class="fas fa-trophy"></i> Prizes distributed LIVE on stream!
+        </p>
+      </div>
+    </div>
+  </div>
+  
+  <footer>
+    <div class="social-links">
+      <a href="https://wa.me/7455025661" class="social-link" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+      <a href="https://youtube.com/@medikitgaming6911" class="social-link" target="_blank">
+        <i class="fab fa-youtube"></i>
+      </a>
+      <a href="#" class="social-link" target="_blank">
+        <i class="fab fa-instagram"></i>
+      </a>
+    </div>
+    
+    <div style="background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 10px; margin: 1.5rem auto; max-width: 800px;">
+      <h3 style="color: var(--accent); margin-bottom: 1rem;">
+        <i class="fas fa-shield-alt"></i> Why Trust Us?
+      </h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; text-align: left;">
+        <div>
+          <p style="color: var(--success);"><i class="fas fa-video"></i> <strong>Live on YouTube</strong></p>
+          <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">All tournaments streamed for transparency</p>
+        </div>
+        <div>
+          <p style="color: var(--success);"><i class="fas fa-bolt"></i> <strong>Instant Prizes</strong></p>
+          <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">Winners paid within 5 minutes</p>
+        </div>
+        <div>
+          <p style="color: var(--success);"><i class="fas fa-users"></i> <strong>500+ Players Daily</strong></p>
+          <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">Largest Free Fire tournament community</p>
+        </div>
+        <div>
+          <p style="color: var(--success);"><i class="fas fa-gift"></i> <strong>Weekly Free Tournament</strong></p>
+          <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">₹150 prize pool every Sunday - FREE entry!</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-links">
+      <a href="#" class="footer-link">Tournament Rules</a>
+      <a href="#" class="footer-link">Payment Policy</a>
+      <a href="#" class="footer-link">Privacy Policy</a>
+      <a href="https://youtube.com/@medikitgaming6911" class="footer-link" target="_blank">YouTube Live</a>
+      <a href="https://wa.me/7455025661" class="footer-link" target="_blank">WhatsApp Support</a>
+    </div>
+    <p class="copyright">© 2025 AJ's Free Fire Tournaments. All tournaments streamed LIVE on YouTube. Organized by AJ.</p>
+  </footer>
+  
+  <script>
+    // Create particles
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 30;
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        const size = Math.random() * 3 + 2;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.bottom = `-${size}px`;
+        const duration = Math.random() * 10 + 10;
+        particle.style.animationDuration = `${duration}s`;
+        particle.style.animationDelay = `${Math.random() * 5}s`;
+        particlesContainer.appendChild(particle);
+      }
+    }
+    
+    // Tournament data
+    const tournamentData = {
+      "Afternoon Quick Fire (12PM)": {
+        time: "12:00 PM Daily",
+        fee: 20,
+        prizes: { first: 200, second: 100, third: 50 }
+      },
+      "Evening Showdown (4PM)": {
+        time: "4:00 PM Daily", 
+        fee: 30,
+        prizes: { first: 300, second: 100, third: 50 }
+      },
+      "Night Elite Battle (8PM)": {
+        time: "8:00 PM Daily",
+        fee: 50,
+        prizes: { first: 500, second: 150, third: 100, fourth: 50 }
+      }
+    };
+    
+    // Modal elements
+    const modal = document.getElementById('registrationModal');
+    const closeModal = document.getElementById('closeModal');
+    const registerButtons = document.querySelectorAll('.register-btn:not([disabled])');
+    const tournamentName = document.getElementById('tournamentName');
+    const tournamentTime = document.getElementById('tournamentTime');
+    const registrationForm = document.getElementById('registrationForm');
+    const confirmation = document.getElementById('confirmation');
+    const submitBtn = document.getElementById('submitRegistration');
+    const confirmOk = document.getElementById('confirmOk');
+    const paymentDetails = document.getElementById('paymentDetails');
+    const feeAmount = document.getElementById('feeAmount');
+    
+    // Live modal elements
+    const liveModal = document.getElementById('liveModal');
+    const liveToggle = document.getElementById('liveToggle');
+    const closeLiveModal = document.getElementById('closeLiveModal');
+    
+    // Register button click
+    registerButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const tournament = button.getAttribute('data-tournament');
+        const fee = button.getAttribute('data-fee');
+        const data = tournamentData[tournament];
+        
+        modal.classList.add('active');
+        tournamentName.textContent = tournament;
+        tournamentTime.textContent = `⏰ Time: ${data.time}`;
+        paymentDetails.textContent = `Pay ₹${fee} via UPI to: tournament@okaxis`;
+        feeAmount.textContent = fee;
+        
+        registrationForm.style.display = 'block';
+        confirmation.style.display = 'none';
+        
+        // Clear form
+        document.getElementById('playerName').value = '';
+        document.getElementById('playerPhone').value = '';
+        document.getElementById('playerUID').value = '';
+      });
+    });
+    
+    // Close modals
+    closeModal.addEventListener('click', () => {
+      modal.classList.remove('active');
+    });
+    
+    closeLiveModal.addEventListener('click', () => {
+      liveModal.classList.remove('active');
+    });
+    
+    confirmOk.addEventListener('click', () => {
+      modal.classList.remove('active');
+    });
+    
+    // Live toggle
+    liveToggle.addEventListener('click', () => {
+      liveModal.classList.add('active');
+    });
+    
+    // Generate verification code
+    function generateVerificationCode() {
+      return Math.floor(1000 + Math.random() * 9000);
+    }
+    
+    // Form submission
+    submitBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('playerName').value;
+      const phone = document.getElementById('playerPhone').value;
+      const uid = document.getElementById('playerUID').value;
+      const tournament = tournamentName.textContent;
+      const fee = tournamentData[tournament].fee;
+      
+      // Validation
+      if (!name || !phone || !uid) {
+        alert('Please fill in all fields');
+        return;
+      }
+      
+      if (!/^\d{10}$/.test(phone)) {
+        alert('Please enter a valid 10-digit WhatsApp number');
+        return;
+      }
+      
+      if (!/^\d+$/.test(uid)) {
+        alert('Please enter a valid Free Fire UID');
+        return;
+      }
+      
+      // Generate code
+      const code = generateVerificationCode();
+      
+      // Show confirmation
+      registrationForm.style.display = 'none';
+      confirmation.classList.add('active');
+      
+      // Prepare WhatsApp message
+      const whatsappNumber = '7455025661';
+      const message = `*AJ's FF Tournament Registration*%0A%0A
+*Tournament:* ${tournament}%0A
+*Time:* ${tournamentData[tournament].time}%0A
+*Entry Fee:* ₹${fee}%0A
+*Name:* ${name}%0A
+*WhatsApp:* ${phone}%0A
+*Free Fire UID:* ${uid}%0A
+*Verification Code:* ${code}%0A%0A
+_Registered at ${new Date().toLocaleString()}_`;
+      
+      // Open WhatsApp after 1 second
+      setTimeout(() => {
+        window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
+      }, 1000);
+    });
+    
+    // Initialize
+    window.addEventListener('load', () => {
+      createParticles();
+      
+      // Animate tournament cards on scroll
+      const observerOptions = { threshold: 0.1 };
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animation = 'cardEntrance 0.5s ease-out forwards';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+      
+      document.querySelectorAll('.tournament-card').forEach(card => {
+        observer.observe(card);
+      });
+      
+      // Update countdown for free tournament
+      function updateFreeTournamentCountdown() {
+        const now = new Date();
+        const day = now.getDay(); // 0 = Sunday, 1 = Monday, etc.
+        const nextSunday = new Date(now);
+        
+        if (day === 0) { // Today is Sunday
+          document.querySelector('.locked-tournament button').innerHTML = '<i class="fas fa-unlock"></i> Register FREE Now';
+          document.querySelector('.locked-tournament button').disabled = false;
+          document.querySelector('.locked-tournament button').style.background = 'linear-gradient(45deg, var(--primary), var(--secondary))';
+          document.querySelector('.locked-tournament button').style.cursor = 'pointer';
+          document.querySelector('.lock-overlay').style.display = 'none';
+        } else {
+          // Calculate days until next Sunday
+          const daysUntilSunday = 7 - day;
+          nextSunday.setDate(now.getDate() + daysUntilSunday);
+          document.querySelector('.unlock-date').innerHTML = `<i class="fas fa-calendar-check"></i> Unlocks in ${daysUntilSunday} day${daysUntilSunday > 1 ? 's' : ''}`;
+        }
+      }
+      
+      updateFreeTournamentCountdown();
+      setInterval(updateFreeTournamentCountdown, 60000); // Update every minute
+    });
+  </script>
+</body>
+</html>
